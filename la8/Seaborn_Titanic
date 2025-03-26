@@ -1,0 +1,47 @@
+pip install seaborn
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+#All you have to do is use the load_dataset function and pass it the name of the dataset.
+dataset = sns.load_dataset(&#39;titanic&#39;)
+dataset.head()
+
+'''
+The Dist Plot The distplot() shows the histogram distribution of data for a single column. The
+column name is passed as a parameter to the distplot() function
+'''
+
+sns.distplot(dataset['fare'])
+sns.distplot(dataset['fare'], kde=False)
+
+
+#You can also pass the value for the bins parameter in order to see more or less details in the graph.
+
+sns.distplot(dataset['fare'], kde=False, bins=10)
+sns.jointplot(x='age', y='fare', data=dataset)
+sns.jointplot(x='age', y='fare', data=dataset, kind='hex
+
+#The Pair Plot The paitplot() is a type of distribution plot that basically plots a joint plot for all the
+possible combination of numeric and Boolean columns in your dataset. You only need to pass
+the name of your dataset as the parameter to the pairplot() function as shown below:
+
+dataset = dataset.dropna()
+sns.pairplot(dataset, hue='sex')
+
+# Rug Plot: #The rugplot() is used to draw small bars along x-axis for each point in the dataset. To plot a rug
+plot, you need to pass the name of the column. Let&#39;s plot a rug plot for fare.
+
+sns.rugplot(dataset['fare'])
+
+
+
+# Conclusion:
+# Seaborn is an advanced data visualization library built on top of Matplotlib.
+# This notebook covers different types of plots in Seaborn:
+# 1. Distribution plots (distplot)
+# 2. Joint plots (jointplot)
+# 3. Pair plots (pairplot)
+# 4. Rug plots (rugplot)
+
