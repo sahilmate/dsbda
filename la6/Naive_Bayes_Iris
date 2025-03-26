@@ -1,0 +1,106 @@
+#Step 1: Importing the Libraries
+
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+#Step 2: Importing the dataset
+
+dataset = pd.read_csv(&#39;https://raw.githubusercontent.com/mk-
+gurucharan/Classification/master/IrisDataset.csv&#39;)
+
+#Step 3:Describe dataset,See dimention and Exlpore dataset
+
+dataset.describe()
+
+dataset.head()
+
+dataset.shape
+
+X = dataset.iloc[:,:4].values
+X
+
+y = dataset[&#39;species&#39;].values
+y
+
+#Step 4: Splitting the dataset into the Training set and Test set
+#Here, we have the test_size=0.2,
+#which means that 20% of the dataset will be used for testing purpose as the test set and
+#the remaining 80% will be used as the training set for training the Naive Bayes
+classification model.
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2)
+
+
+
+#Step 5: Feature Scaling
+#The dataset is scaled down to a smaller range using the Feature Scaling option. In this,
+both the X_train and X_test values are scaled down to smaller values to improve the speed
+of the program.
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+X_train
+
+
+
+
+X_test
+
+
+
+#Step 6: Training the Naive Bayes Classification model on the Training Set
+#n this step, we introduce the class GaussianNB that is used from the sklearn.naive_bayes
+library.
+#Here, we have used a Gaussian model, there are several other models such as Bernoulli,
+Categorical and Multinomial.
+
+from sklearn.naive_bayes import GaussianNB
+classifier = GaussianNB()
+classifier.fit(X_train, y_train)
+
+
+
+
+
+#Step 6: Predicting the Test set results
+
+y_pred = classifier.predict(X_test)
+y_pred
+
+
+
+
+
+#Step 7: Confusion Matrix and Accuracy
+#This is a step that is mostly used in classification techniques.
+#In this, we see the Accuracy of the trained model and plot the confusion matrix.
+
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred)
+cm
+
+
+
+
+
+from sklearn.metrics import accuracy_score
+print (&quot;Accuracy : &quot;, accuracy_score(y_test, y_pred))
+
+
+
+
+#Step 8: Comparing the Real Values with Predicted Values
+
+df = pd.DataFrame({&#39;Real Values&#39;:y_test, &#39;Predicted Values&#39;:y_pred})
+df
+
+
+
+
+#Conclusion:
+From the above confusion matrix, we infer that, out of 30 test set data,
+29 were correctly classified and only 1 was incorrectly classified
