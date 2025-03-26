@@ -1,0 +1,65 @@
+# Import required libraries
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load the dataset
+df = pd.read_csv("Iris.csv")
+
+# Display first five rows
+df.head()
+
+# Number of columns
+column = len(df.columns)
+print(column)
+
+# Dataset information
+df.info()
+
+# Unique species in the dataset
+print(np.unique(df["Species"]))
+
+# Statistical summary
+df.describe()
+
+# Matplotlib inline for Jupyter Notebook
+%matplotlib inline
+
+# Histograms for feature distributions
+fig, axes = plt.subplots(2, 2, figsize=(16, 8))
+
+axes[0, 0].set_title("Distribution of Sepal Length")
+axes[0, 0].hist(df["SepalLengthCm"])
+
+axes[0, 1].set_title("Distribution of Sepal Width")
+axes[0, 1].hist(df["SepalWidthCm"])
+
+axes[1, 0].set_title("Distribution of Petal Length")
+axes[1, 0].hist(df["PetalLengthCm"])
+
+axes[1, 1].set_title("Distribution of Petal Width")
+axes[1, 1].hist(df["PetalWidthCm"])
+
+plt.show()
+
+# Boxplot for feature distributions
+data_to_plot = [
+    df["SepalLengthCm"],
+    df["SepalWidthCm"],
+    df["PetalLengthCm"],
+    df["PetalWidthCm"]
+]
+
+sns.set_style("whitegrid")
+
+# Create a figure instance
+fig = plt.figure(1, figsize=(12, 8))
+
+# Create an axes instance
+ax = fig.add_subplot(111)
+
+# Create the boxplot
+ax.boxplot(data_to_plot)
+
+plt.show()
