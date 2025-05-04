@@ -1,0 +1,36 @@
+import pandas as pd
+df = pd.read_csv('data.csv')
+df.dtypes
+df.describe()
+df.groupby(by=['Age']).size()
+df.isna().sum()
+df.shape
+df.isnull()
+type("Age")
+type("BMI")
+df.Age.astype(float)
+df.Age=df.Age.astype(float)
+df.describe()
+df.dtypes
+df.sort_values('Age')
+df.sort_values('Age',ascending=False)
+df.rename(columns={'Age':'Year Old'})
+df.sort_index()
+df.reset_index()
+df.drop(columns=['Age'])
+pd.melt(df)
+df.drop_duplicates()
+df.head(5)
+df.tail(5)
+df.count()
+df = df.apply(pd.to_numeric, errors='coerce') # Convert non-numeric values to NaN
+df.median()
+df.quantile()
+df.min()
+df.max()
+df.mean()
+df.std()
+pd.get_dummies(df['Age'])
+df_enc=pd.get_dummies(df['Glucose'])
+df.iloc[2:50]
+print(df_enc)
